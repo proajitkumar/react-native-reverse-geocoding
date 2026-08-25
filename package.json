@@ -1,6 +1,6 @@
 {
   "name": "react-native-reverse-geocoding",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Native reverse geocoding for React Native using CLGeocoder on iOS and android.location.Geocoder on Android — no REST APIs or API keys.",
   "main": "./lib/module/index.js",
   "types": "./lib/typescript/src/index.d.ts",
