@@ -1,6 +1,6 @@
 {
   "name": "react-native-reverse-geocoding",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Native reverse geocoding for React Native using CLGeocoder on iOS and android.location.Geocoder on Android — no REST APIs or API keys.",
   "main": "./lib/module/index.js",
   "types": "./lib/typescript/src/index.d.ts",
@@ -46,14 +46,14 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/eazyerp/react-native-reverse-geocoding.git"
+    "url": "git+https://github.com/proajitkumar/react-native-reverse-geocoding.git"
   },
-  "author": "Ajit Kumar <ajitkumar@eazyerp.com> (https://github.com/eazyerp)",
+  "author": "Ajit Kumar <ajitkumar@eazyerp.com> (https://github.com/proajitkumar)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/eazyerp/react-native-reverse-geocoding/issues"
+    "url": "https://github.com/proajitkumar/react-native-reverse-geocoding/issues"
   },
-  "homepage": "https://github.com/eazyerp/react-native-reverse-geocoding#readme",
+  "homepage": "https://github.com/proajitkumar/react-native-reverse-geocoding#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
