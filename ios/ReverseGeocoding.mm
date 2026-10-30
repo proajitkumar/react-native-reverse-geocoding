@@ -22,10 +22,43 @@
     return self;
 }
 
+RCT_EXPORT_MODULE()
+
++ (BOOL)requiresMainQueueSetup
+{
+    return NO;
+}
+
+#ifdef RCT_NEW_ARCH_ENABLED
 - (void)reverseGeocode:(double)latitude
               longitude:(double)longitude
                 resolve:(RCTPromiseResolveBlock)resolve
                  reject:(RCTPromiseRejectBlock)reject
+{
+    [self performReverseGeocode:latitude longitude:longitude resolve:resolve reject:reject];
+}
+
+- (std::shared_ptr<facebook::react::TurboModule>)getTurboModule:
+    (const facebook::react::ObjCTurboModule::InitParams &)params
+{
+    return std::make_shared<facebook::react::NativeReverseGeocodingSpecJSI>(params);
+}
+#else
+// Old architecture (bridge): the method must be exported explicitly.
+RCT_REMAP_METHOD(reverseGeocode,
+                 reverseGeocode:(double)latitude
+                 longitude:(double)longitude
+                 resolver:(RCTPromiseResolveBlock)resolve
+                 rejecter:(RCTPromiseRejectBlock)reject)
+{
+    [self performReverseGeocode:latitude longitude:longitude resolve:resolve reject:reject];
+}
+#endif
+
+- (void)performReverseGeocode:(double)latitude
+                    longitude:(double)longitude
+                      resolve:(RCTPromiseResolveBlock)resolve
+                       reject:(RCTPromiseRejectBlock)reject
 {
     [_impl reverseGeocodeWithLatitude:latitude
                              longitude:longitude
@@ -35,17 +68,6 @@
                                 reject:^(NSString *code, NSString *message, NSError *error) {
         reject(code, message, error);
     }];
-}
-
-- (std::shared_ptr<facebook::react::TurboModule>)getTurboModule:
-    (const facebook::react::ObjCTurboModule::InitParams &)params
-{
-    return std::make_shared<facebook::react::NativeReverseGeocodingSpecJSI>(params);
-}
-
-+ (NSString *)moduleName
-{
-  return @"ReverseGeocoding";
 }
 
 @end
